@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Staff;
 use App\Models\User;
+use Database\Factories\StaffFactory;
+use Database\Factories\StudentFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $password = Hash::make('12345');
+        StaffFactory::$password = $password;
+        StudentFactory::$password = $password;
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            StaffSeeder::class,
+            StudentSeeder::class,
         ]);
     }
 }
