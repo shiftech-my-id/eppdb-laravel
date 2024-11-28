@@ -1,0 +1,13 @@
+.toggle-password {
+    cursor: pointer;
+    display:flex;
+    width: 100%;
+}
+
+.toggle-password > .fa {
+    width: 18px;
+}
+.toggle-password input {
+    display: block;
+    width: 100%;
+}

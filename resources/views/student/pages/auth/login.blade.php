@@ -32,13 +32,13 @@
           @csrf
           <div class="my-3">
             <div class="input-group">
-              <input type="text" name="username" autofocus value="{{ old('username') }}" class="form-control"
-                placeholder="No Registrasi">
-              <div class="input-group-append">
+              <div class="input-group-prepend">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
                 </div>
               </div>
+              <input type="text" name="username" autofocus value="{{ old('username') }}" class="form-control"
+                placeholder="No Registrasi">
             </div>
             @error('username')
               <p class="text-danger"><small>{{ $message }}</small></p>
@@ -46,10 +46,15 @@
           </div>
           <div class="my-3">
             <div class="input-group">
-              <input type="password" name="password" value="" class="form-control" placeholder="Kata Sandi">
-              <div class="input-group-append">
+              <div class="input-group-prepend">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
+                </div>
+              </div>
+              <input type="password" name="password" value="" class="form-control toggle-password-target" placeholder="Kata Sandi">
+              <div class="input-group-append">
+                <div class="input-group-text toggle-password">
+                  <span class="fa fa-eye"></span>
                 </div>
               </div>
             </div>
@@ -86,6 +91,11 @@
   <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      initToggleablePassword();
+    });
+  </script>
 </body>
 
 </html>
