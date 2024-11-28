@@ -43,7 +43,7 @@ class AuthController extends Controller
         $error = '';
         $data = $request->only(['username', 'password']);
         $auth = Auth::guard('student');
-        if (!$auth->attempt($data)) {
+        if (!$auth->attempt($data, $request->has('remember'))) {
             $error = 'Username atau password salah!';
             // UserActivity::log(UserActivity::AUTHENTICATION, 'Login', 'Login gagal. Pengguna dengan username ' . e($request->post('username')) . ' mencoba login.');
         } else {

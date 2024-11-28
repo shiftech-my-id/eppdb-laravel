@@ -19,17 +19,14 @@
         <div>
           <span>Masuk <b>{{ env('APP_NAME') }}</b><sup><small> v{{ env('APP_VERSION_STR') }}</sup></small></span>
         </div>
-        <div class="h6"><b>{{ e(env('SCHOOL_NAME')) }}</b></div>
-        <div class="h4">Login Staff</div>
+        <div class="h6"><a href="{{ url('/') }}"><b>{{ e(env('SCHOOL_NAME')) }}</b></a></div>
       </div>
       <div class="card-body">
         @if (Session::has('error'))
           <p class="login-box-msg text-danger">{{ Session::get('error') }}</p>
-        @else
-          @if (Session::has('success'))
-            <p class="login-box-msg text-success">{{ Session::get('success') }}</p>
-          @endif
-          <p class="login-box-msg">Masuk untuk memulai sesi anda.</p>
+        @endif
+        @if (Session::has('success'))
+          <p class="login-box-msg text-success">{{ Session::get('success') }}</p>
         @endif
         <form action="{{ route('staff.authenticate') }}" method="post">
           @csrf
@@ -60,11 +57,24 @@
               <p class="text-danger"><small>{{ $message }}</small></p>
             @enderror
           </div>
+          <div class="my-3">
+            <div class="form-group clearfix">
+              <div class="icheck-primary d-inline">
+                <input name="remember" type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label for="remember" class="font-weight-normal">Ingat saya di perangkat ini</label>
+              </div>
+            </div>
+          </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 my-3">
               <button type="submit" class="btn btn-primary btn-block">
                 <i class="fa fa-right-to-bracket mr-2"></i>Masuk
               </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 my-2">
+              <div class="text-sm text-gray">Silahkan hubungi admin untuk membuat akun atau mengatur ulang kata sandi.</div>
             </div>
           </div>
         </form>

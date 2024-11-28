@@ -40,6 +40,7 @@ Route::prefix('student')->group(function () {
         Route::get('login', [StudentAuthController::class, 'login'])->name('student.login');
         Route::post('authenticate', [StudentAuthController::class, 'authenticate'])->name('student.authenticate');
         Route::get('logout', [StudentAuthController::class, 'logout'])->name('student.logout');
+        Route::match(['get', 'post'], 'register', [StudentAuthController::class, 'register'])->name('student.register');
     });
 
     Route::middleware(OnlyStudent::class)->group(function () {
